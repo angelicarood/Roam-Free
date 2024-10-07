@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './Components/theme/Header/Header.js'; // Change to Header
+import Header from './Components/Header.js';
+// import Header from './Components/theme/Header/Header.js';
 import Home from './Components/Home.js';
+import Navbar from './Components/Navbar.js';
 
 function App() {
   return (
