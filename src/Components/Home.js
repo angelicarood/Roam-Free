@@ -17,7 +17,7 @@ const Home = () => {
                 <img
                     src="/pexels-pixabay-35600.jpg"
                     alt="Hiking in the mountains"
-                    className="top-50 w-32 sm:w-48 md:w-64 h-auto object-contain z-20 opacity-50"
+                    className="top-50 w-32 sm:w-48 md:w-64 h-auto object-contain z-20 opacity-100 rounded-lg border border-white"
                 />
                 <p className="font-bold text-xl sm:text-2xl md:text-3xl mt-4">Into the Wild</p>
                 <button className="mt-5 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -28,7 +28,7 @@ const Home = () => {
                 <img
                     src="/pexels-souvenirpixels-417074.jpg"
                     alt="Hiking in the mountains"
-                    className="top-50 w-32 sm:w-48 md:w-64 h-auto object-contain z-20 opacity-40"
+                    className="top-50 w-32 sm:w-48 md:w-64 h-auto object-contain z-20 opacity-100 rounded-lg border border-white"
                 />
                 <p className="font-bold text-xl sm:text-2xl md:text-3xl mt-4">Discover New Trails</p>
                 <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
