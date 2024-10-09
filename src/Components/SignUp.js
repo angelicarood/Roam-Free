@@ -22,7 +22,7 @@ const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #6DB56F;
+  background-image: url('/background.jpg');
   padding: 50px;
 `;
 
