@@ -9,7 +9,7 @@ const DiscoverSect = () => {
       <QuestGrid>
         <QuestItem>
           <QuestImage src= "festivals.jpg" alt="Festivals" />
-          <QuestTitle>Festivals</QuestTitle>
+          <QuestTitle>festivals</QuestTitle>
           <QuestDescription>
             Unlock the hidden secrets of your city with unique curated adventures that let you see the world right outside your door in a new light. Experience the local culture like never before through uncharted tours and exclusive events, tailored just for the innovative traveler in you.
           </QuestDescription>
@@ -86,11 +86,12 @@ const QuestImage = styled.img`
 `;
 
 const QuestTitle = styled.h2`
-  font-size: 1.7em;
+  font-size: 1.5em;
   text-decoration: underline;
   margin: 20px 0 10px;
   font-weight: bold;
   font-family: 'Syncopate';
+  text-transform: uppercase;
 `;
 
 const QuestDescription = styled.p`
