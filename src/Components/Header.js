@@ -32,7 +32,7 @@ const HeaderContainer = styled.header`
   background-image: url('/outside.png');
   background-size: cover;
   background-position: center;
-  height: 65vh;
+  height: 45vh;
   color: white;
   display: flex;
   flex-direction: column;
