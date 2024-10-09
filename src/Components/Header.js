@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <Navbar>
         <Logo>ROAM FREE</Logo>
         <NavLinks>
-          <li><NavLink href="#">Shop</NavLink></li>
+          <li><NavLink as={Link} to="/shop">Shop</NavLink></li>
           <li><NavLink href="#">Services</NavLink></li>
           <li><NavLink href="#">About</NavLink></li>
           <li><NavLink href="#">Contact</NavLink></li>
