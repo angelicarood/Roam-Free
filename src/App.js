@@ -11,6 +11,7 @@ import FooterWeb from './Components/FooterWeb.js';
 function App() {
   return (
     <div className="App">  
+    
       <Header /> {/* Include the Header component here */}
       <span/><span/>
       <HomePage />
