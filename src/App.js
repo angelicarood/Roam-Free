@@ -12,6 +12,7 @@ function App() {
   return (
     <div className="App">  
       <Header /> {/* Include the Header component here */}
+      <span/><span/>
       <HomePage />
       {/*<NewsletterSignup /> */}
       {/*<Footer />} */}
