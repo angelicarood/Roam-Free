@@ -58,7 +58,7 @@ const NorthMap = () => {
 
   return (
     <div>
-      <h3> </h3>
+      <h3>North Utah Map</h3>
       <div id="map" style={{ height: '400px', width: '100%' }}></div>
     </div>
   );

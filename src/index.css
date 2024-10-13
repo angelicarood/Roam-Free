@@ -8,3 +8,20 @@
     -webkit-text-fill-color: transparent;
   }
 }
+body {
+  background-color: white;
+  color: black;
+}
+
+.dark body {
+  background-color: #1a202c;
+  color: white;
+}
+
+.dark href {
+  color: #2d3748;
+}
+
+.dark p {
+  color: white;
+}

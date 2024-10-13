@@ -1,24 +1,98 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
+import { ThemeContext } from '../ThemeContext';
 
 const Navbar = () => {
+  const { darkMode } = useContext(ThemeContext);
+
   return (
-    <nav className="w-full bg-white dark:bg-gray-800 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-black dark:text-white">Roam Free</h1>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a href="#home" className="text-gray-900 dark:text-white">Home</a>
-            <a href="#about" className="text-gray-900 dark:text-white">About</a>
-            <a href="#contact" className="text-gray-900 dark:text-white">Contact</a>
-            <DarkModeToggle />
-          </div>
-        </div>
-      </div>
-    </nav>
+    <NavbarContainer darkMode={darkMode}>
+      <LeftSection>
+        <Logo darkMode={darkMode}>ROAM FREE</Logo>
+      </LeftSection>
+      <NavLinks>
+        <NavItem>
+          <NavLink darkMode={darkMode} href="#">Shop</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink darkMode={darkMode} href="#">Services</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink darkMode={darkMode} href="#">About</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink darkMode={darkMode} href="#">Contact</NavLink>
+        </NavItem>
+      </NavLinks>
+      <DarkModeButton>
+        <DarkModeToggle />
+      </DarkModeButton>
+    </NavbarContainer>
   );
 };
+
+const NavbarContainer = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: transparent;
+  z-index: 10; 
+  position: relative;
+`;
+
+const Logo = styled.h1`
+  font-family: 'Syncopate';
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 11; 
+  pointer-events: all;
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavLinks = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  z-index: 11; 
+`;
+
+const NavItem = styled.li`
+  list-style: none;
+`;
+
+const NavLink = styled.a`
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  pointer-events: all; 
+  z-index: 11; 
+
+  &:hover {
+    color: ${({ darkMode }) => (darkMode ? '#ccc' : '#333')};
+  }
+`;
+
+const DarkModeButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 12; 
+  
+  &:hover {
+    background-color: ${({ darkMode }) => (darkMode ? '#444' : '#f0f0f0')};
+  }
+`;
 
 export default Navbar;
