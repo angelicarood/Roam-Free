@@ -77,3 +77,30 @@ const JoinButton = styled.button`
 `;
 
 export default Header;
+
+
+
+
+// const Header = () => {
+//   return (
+//     <HeaderContainer>
+//       <Overlay />
+//       <Navbar>
+//         <Logo>ROAM FREE</Logo>
+//         <NavLinks>
+//           <li><NavLink as={Link} to="/shop">Shop</NavLink></li>
+//           <li><NavLink href="#">Services</NavLink></li>
+//           <li><NavLink href="#">About</NavLink></li>
+//           <li><NavLink href="#">Contact</NavLink></li>
+//         </NavLinks>
+//         <AccountButton href="#">Account</AccountButton>
+//       </Navbar>
+//       <HeroText>
+//         <HeroHeading>JOURNEY BEYOND<br />THE ORDINARY</HeroHeading>
+//         <HeroDescription>
+//         Embark on a journey where the ordinary dissolves into the extraordinary, and every moment is a new horizon waiting to be explored. Blaze trails across uncharted territories and redefine what it means to travel the world.
+//         </HeroDescription>
+//         <JoinButton href="#">Join Us</JoinButton>
+//       </HeroText>
+//     </HeaderContainer>
+//   );
