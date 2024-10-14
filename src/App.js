@@ -1,6 +1,10 @@
 import './App.css';
 import Header from './Components/Header.js';
-import Navbar from './Components/Navbar.js';
+// import Header from './Components/theme/Header/Header.js';
+//import Home from './Components/Home.js';
+//import Navbar from './Components/Navbar.js';
+//import Footer from './Components/Footer.js';
+//import NewsletterSignup from './Components/NewsletterSignup.js';
 import HomePage from './Components/HomePage.js';
 import FooterWeb from './Components/FooterWeb.js';
 import Shop from './Components/Shop.js';
@@ -12,6 +16,7 @@ function App() {
   return (
     <Router>
     <div className="App">  
+    
       <Header /> {/* Include the Header component here */}
       <span/><span/>
       <Routes> {/* Corrected opening tag */}

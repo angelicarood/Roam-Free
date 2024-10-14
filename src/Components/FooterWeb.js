@@ -1,24 +1,27 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../ThemeContext';
 
 const FooterWeb = () => {
+  const { darkMode } = useContext(ThemeContext);
+
   return (
-    <FooterContainer>
+    <FooterContainer darkMode={darkMode}>
       <FooterSection>
-        <Logo>ROAM FREE</Logo>
+        <Logo darkMode={darkMode}>ROAM FREE</Logo>
         <LinksContainer>
           <Section>
-            <SectionTitle>Explore</SectionTitle>
-            <Link href="#">About us</Link>
-            <Link href="#">Contact</Link>
-            <Link href="#">Shop</Link>
-            <Link href="#">Services</Link>
+            <SectionTitle darkMode={darkMode}>Explore</SectionTitle>
+            <Link darkMode={darkMode} href="#">About us</Link>
+            <Link darkMode={darkMode} href="#">Contact</Link>
+            <Link darkMode={darkMode} href="#">Shop</Link>
+            <Link darkMode={darkMode} href="#">Services</Link>
           </Section>
           <Section>
-            <SectionTitle>Follow us</SectionTitle>
-            <Link href="#">Email</Link>
-            <Link href="#">Facebook</Link>
-            <Link href="#">Instagram</Link>
+            <SectionTitle darkMode={darkMode}>Follow us</SectionTitle>
+            <Link darkMode={darkMode} href="#">Email</Link>
+            <Link darkMode={darkMode} href="#">Facebook</Link>
+            <Link darkMode={darkMode} href="#">Instagram</Link>
           </Section>
         </LinksContainer>
       </FooterSection>
@@ -27,26 +30,19 @@ const FooterWeb = () => {
 };
 
 const FooterContainer = styled.footer`
-  background-color: #fff;
+  background-color: ${({ darkMode }) => (darkMode ? '#1a202c' : '#fff')};
+  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   padding: 80px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid #eaeaea;
 `;
 
 const FooterSection = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  max-width: 1200px;
-  align-items: flex-start;
 `;
 
 const Logo = styled.div`
   font-size: 50px;
   font-weight: bold;
-  text-align: left;
   font-family: 'Syncopate', sans-serif;
 `;
 
@@ -64,18 +60,14 @@ const SectionTitle = styled.h3`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  text-align: left;
-  font-family: 'space grotesk';
-
 `;
 
 const Link = styled.a`
-  text-decoration: underline;
-  color: #000;
+  color: ${({ darkMode }) => (darkMode ? '#ccc' : '#000')};
   margin-bottom: 5px;
-  text-align: left;
+
   &:hover {
-    text-decoration: underline;
+    color: ${({ darkMode }) => (darkMode ? '#fff' : '#333')};
   }
 `;
 
