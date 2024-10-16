@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import { ThemeContext } from '../ThemeContext';
 
-const Navbar = () => {
+const Navbar = ({ handleToggle }) => {
   const { darkMode } = useContext(ThemeContext);
+
+  console.log("Navbar: handleToggle passed:", handleToggle);  // Debugging log
 
   return (
     <NavbarContainer darkMode={darkMode}>
@@ -26,7 +28,7 @@ const Navbar = () => {
         </NavItem>
       </NavLinks>
       <DarkModeButton>
-        <DarkModeToggle />
+        <DarkModeToggle onToggle={handleToggle} />  {/* Pass handleToggle to DarkModeToggle */}
       </DarkModeButton>
     </NavbarContainer>
   );
@@ -78,7 +80,7 @@ const NavLink = styled.a`
   z-index: 11; 
 
   &:hover {
-    color: ${({ darkMode }) => (darkMode ? '#ccc' : '#333')};
+    color: ${({ darkMode }) => (darkMode ? '#ccc' : '#333')}; /* Dark/Light mode hover color */
   }
 `;
 
@@ -90,9 +92,6 @@ const DarkModeButton = styled.div`
   padding: 10px;
   z-index: 12; 
   
-  &:hover {
-    background-color: ${({ darkMode }) => (darkMode ? '#444' : '#f0f0f0')};
-  }
 `;
 
 export default Navbar;
