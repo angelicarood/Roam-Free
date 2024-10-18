@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 
+// Ensure Cypress is properly imported
+import { cy } from 'cypress';
+
 // Welcome to Cypress!
 //
 // This spec file contains a variety of sample tests
