@@ -18,7 +18,7 @@ function App() {
            <Route path="/shop" element={<Shop />} /> {/* Shop page */}
            <Route path="/payment-success" element={<PaymentSuccess />} /> {/* Add this route */}
         </Routes> {/* Corrected closing tag */}
-      <HomePage />
+        <HomePage />
       <FooterWeb />
     </div>
     </Router>

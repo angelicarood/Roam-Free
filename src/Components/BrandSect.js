@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BrandSect = () => {
   return (
-    <BrandSection>
+    <BrandSection id="brand-section">
       <BrandGrid>
         <BrandItem>
           <BrandImage src="hall.jpg" alt="Hall" />
@@ -14,7 +14,6 @@ const BrandSect = () => {
             <span>Embark on a journey like never before <br></br>with us, where breakthrough travel<br></br> experiences redefine the boundaries<br></br> of exploration.</span>
             <span>Our visionary team crafts adventures <br></br>that transcend the ordinary, inviting <br></br>you to discover the world’s marvels in <br></br>unparalleled ways.</span>
           </BrandDescription>
-          <LearnButton href="#">LEARN MORE</LearnButton>
         </TextContainer>
       </BrandGrid>
     </BrandSection>
@@ -68,21 +67,6 @@ const BrandDescription = styled.div`
   }
 `;
 
-const LearnButton = styled.a`
-  display: inline-block;
-  background-color: black;
-  color: white;
-  text-decoration: none;
-  padding: 15px 30px;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: #333;
-  }
-`;
 
 export default BrandSect;

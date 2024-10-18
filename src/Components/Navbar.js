@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import { ThemeContext } from '../ThemeContext';
 
+
+
 const Navbar = ({ handleToggle }) => {
   const { darkMode } = useContext(ThemeContext);
 
@@ -21,7 +23,7 @@ const Navbar = ({ handleToggle }) => {
           <NavLink darkMode={darkMode} href="#">Services</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink darkMode={darkMode} href="#">About</NavLink>
+          <NavLink darkMode={darkMode} href="#brand-section">About</NavLink>
         </NavItem>
         <NavItem>
           <NavLink darkMode={darkMode} href="#">Contact</NavLink>

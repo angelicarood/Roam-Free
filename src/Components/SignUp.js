@@ -10,7 +10,7 @@ const SignUp = () => {
       <SignUpContent darkMode={darkMode}>
         <Title darkMode={darkMode}>START PLANNING</Title>
         <Description darkMode={darkMode}>
-          Tell people what they can expect when they sign up with<br></br> their email, like a newsletter, discounts or updates.
+        Enter your email to stay updated on our latest news, including new <br></br> merchandise, exciting places to explore, and exclusive offers.
         </Description>
         <SignUpForm>
           <SignUpInput darkMode={darkMode} type="email" placeholder="Email Address" />
