@@ -1,43 +1,54 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../ThemeContext';
+import EmailSubscription from './EmailSubscription';
 
 const SignUp = () => {
   const { darkMode } = useContext(ThemeContext);
 
+  // Function to handle form submission
+  const handleSignUp = (email) => {
+    console.log("Email submitted: ", email);
+  };
+
   return (
     <SignUpSection darkMode={darkMode}>
-      <SignUpContent darkMode={darkMode}>
-        <Title darkMode={darkMode}>START PLANNING</Title>
-        <Description darkMode={darkMode}>
-        Enter your email to stay updated on our latest news, including new <br></br> merchandise, exciting places to explore, and exclusive offers.
+      <SignUpContent>
+        <Title>START PLANNING</Title>
+        <Description>
+          Enter your email to stay updated on our latest news, including new <br /> 
+          merchandise, exciting places to explore, and exclusive offers.
         </Description>
-        <SignUpForm>
-          <SignUpInput darkMode={darkMode} type="email" placeholder="Email Address" />
-          <SignUpButton darkMode={darkMode}>Sign Up</SignUpButton>
-        </SignUpForm>
+        <EmailSubscription onSubmit={handleSignUp} />
       </SignUpContent>
     </SignUpSection>
   );
 };
 
+// Styled Components
 const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
   padding: 50px;
+  height: 60vh; /* Ensure it takes full height of the screen */
+  background-color: ${({ darkMode }) => (darkMode ? '#282828' : 'white')}; /* Changes only section background */
 `;
 
 const SignUpContent = styled.div`
-  background-color: ${({ darkMode }) => (darkMode ? '#333' : 'white')};
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
+  background-color: white; /* Fixed white background */
+  color: black; /* Fixed black text */
   padding: 40px 60px;
   text-align: center;
   border-radius: 8px;
   max-width: 800px;
-  height: 500px;
+  max-height: 500px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
   width: 100%;
+  height: 100%;
 `;
 
 const Title = styled.h1`
@@ -46,53 +57,14 @@ const Title = styled.h1`
   text-transform: uppercase;
   margin-bottom: 20px;
   font-family: 'Syncopate', sans-serif;
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
+  color: black; /* Always stays black */
 `;
 
 const Description = styled.p`
   font-size: 18px;
   margin-bottom: 30px;
   font-family: 'Space Grotesk', sans-serif;
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
-`;
-
-const SignUpForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const SignUpInput = styled.input`
-  width: 40%;
-  padding: 15px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border: 1px solid ${({ darkMode }) => (darkMode ? '#666' : '#ccc')};
-  border-radius: 4px;
-  background-color: ${({ darkMode }) => (darkMode ? '#666' : 'white')};
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
-  outline: none;
-
-  &:focus {
-    border-color: #6db56f;
-  }
-`;
-
-const SignUpButton = styled.button`
-  background-color: ${({ darkMode }) => (darkMode ? '#555' : 'black')};
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'white')};
-  padding: 15px 30px;
-  font-size: 16px;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${({ darkMode }) => (darkMode ? '#777' : '#333')};
-  }
+  color: black !important; /* Forces the description to always be black */
 `;
 
 export default SignUp;

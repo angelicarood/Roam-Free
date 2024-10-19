@@ -6,21 +6,21 @@ import styled from "styled-components";
 const CustomizeSect = () => {
   return(
     <CustomizeSection>
-      <Title>Customize Your<br></br> Adventure</Title>
+      <Title>Customize Your Adventure</Title>
       <CustomizeGrid>
         <CustomizeItem>
-          <CustomizeImage src="petfriendly.jpeg" alt="PetFriendly" />
+          <CustomizeImage src="petfriendly.jpg" alt="PetFriendly" />
           <CustomizeTitle> <a href="https://www.bringfido.com/attraction/state/utah/" target="_blank" rel="noopener noreferrer"> 
           Pet Friendly
           </a>
           </CustomizeTitle>
         </CustomizeItem>
         <CustomizeItem>
-          <CustomizeImage src="outdoor.jpeg" alt="Outdoor" />
+          <CustomizeImage src="outdoor.jpg" alt="Outdoor" />
           <CustomizeTitle> <a href="https://www.utah.com/things-to-do/outdoor-recreation/" target="_blank" rel="noopener noreferrer">Outdoors</a> </CustomizeTitle>
         </CustomizeItem>
         <CustomizeItem>
-          <CustomizeImage src="indoors.jpeg" alt="Indoors" />
+          <CustomizeImage src="indoors.jpg" alt="Indoors" />
           <CustomizeTitle> <a href="https://www.utahsadventurefamily.com/indoor-activities-in-utah/" target="_blank" rel="noopener noreferrer">Indoors</a> </CustomizeTitle>
         </CustomizeItem>
       </CustomizeGrid>
@@ -35,18 +35,19 @@ const CustomizeSection = styled.section`
 `;
 
 const Title = styled.h1`
-  font-size: 68px;
+  font-size: 85px;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 40px;
   margin-top: 40px;
-  font-family: 'Syncopate';
+  font-family: 'Syncopate' ,sans-serif;
+  letter-spacing: 2px;
 `;
 
 const CustomizeGrid = styled.div`
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 70px;
 `;
 
 const CustomizeItem = styled.div`
@@ -57,8 +58,8 @@ const CustomizeItem = styled.div`
 `;
 
 const CustomizeImage = styled.img`
-  width: 450px;
-  height: 350px;
+  width: 500px;
+  height:500px ;
   object-fit: cover;
   margin-bottom: 15px;
 `;
@@ -68,7 +69,8 @@ const CustomizeTitle = styled.h2`
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: underline;
-  font-family: 'Syncopate';
+  font-family: 'Syncopate' ,sans-serif;
+  letter-spacing: 2px;
    a {
     color: inherit;
     text-decoration: none;
@@ -76,7 +78,7 @@ const CustomizeTitle = styled.h2`
 
   a:hover {
     text-decoration: underline;
-    color: #3498db; /* Change the color on hover */
+    color: #f1bb7d; /* Change the color on hover */
   }
 `;
  

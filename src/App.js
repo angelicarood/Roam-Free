@@ -1,33 +1,36 @@
-import './App.css';
-import Header from './Components/Header.js';
-import HomePage from './Components/HomePage.js';
-import FooterWeb from './Components/FooterWeb.js';
-import Shop from './Components/Shop.js';
-import PaymentSuccess from './Components/PaymentSuccess.js'; // Import the PaymentSuccess component
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import Navbar from './Components/Navbar';
+import FooterWeb from './Components/FooterWeb';
+import HomePage from './Components/HomePage';
+import Shop from './Components/Shop';
+import PaymentSuccess from './Components/PaymentSuccess';
+import { GlobalStyle } from './GlobalStyle';  // Global styles
+import { ThemeProvider, ThemeContext } from './ThemeContext';
 
 function App() {
   return (
-    <Router>
-    <div className="App">  
-    
-      <Header /> {/* Include the Header component here */}
-      <span/><span/>
-      <Routes> {/* Corrected opening tag */}
-           <Route path="/shop" element={<Shop />} /> {/* Shop page */}
-           <Route path="/payment-success" element={<PaymentSuccess />} /> {/* Add this route */}
-        </Routes> {/* Corrected closing tag */}
-        <HomePage />
-      <FooterWeb />
-    </div>
-    </Router>
+    <ThemeProvider>
+      <ThemeContext.Consumer>
+        {({ darkMode }) => (
+          <>
+      <GlobalStyle darkMode={darkMode} />  {/* Apply global styles */}
+      <Router>
+        <div className="App">
+          <Navbar darkMode={darkMode} />  {/* Pass darkMode to Navbar */}
+          <Routes>
+            <Route path="/shop" element={<Shop darkMode={darkMode} />} />
+            <Route path="/payment-success" element={<PaymentSuccess darkMode={darkMode} />} />
+          </Routes>
+          <HomePage darkMode={darkMode} />  {/* Pass darkMode to HomePage */}
+          <FooterWeb darkMode={darkMode} />  {/* Pass darkMode to Footer */}
+        </div>
+      </Router>
+          </>
+        )}
+      </ThemeContext.Consumer>
+    </ThemeProvider>
   );
 }
 
 export default App;
-
-
-
-
-
