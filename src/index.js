@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ThemeProvider } from './ThemeContext';
-import './index.css'; // Ensure this line exists
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <ThemeProvider>
     <App />
   </ThemeProvider>,

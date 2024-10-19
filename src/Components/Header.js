@@ -1,37 +1,30 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import Navbar from './Navbar';
-import { ThemeContext } from '../ThemeContext';
+import { ThemeContext } from '../ThemeContext'; 
 
 const Header = () => {
-    const { darkMode } = useContext(ThemeContext);  // Access darkMode from the context
-    const [showStars, setShowStars] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
+  const [showStars, setShowStars] = useState(false);
 
-    const handleToggle = () => {
-        // Only show stars if switching to dark mode
-        if (!darkMode) {  // darkMode is false, meaning we're switching to dark mode
-            console.log("Switching to dark mode: Stars should appear");
-            setShowStars(true); // Show stars when toggling to dark mode
-            setTimeout(() => {
-                setShowStars(false); // Hide stars after 2 seconds
-                console.log("Stars hidden after 4 seconds");
-            }, 4000);
-        }
-    };
+  useEffect(() => {
+    if (darkMode) {
+      setShowStars(true);
+      const timeoutId = setTimeout(() => setShowStars(false), 2000);
+      return () => clearTimeout(timeoutId);  // Cleanup timeout
+    }
+  }, [darkMode]);
 
-    return (
-        <HeaderContainer>
-            {showStars && <StarsContainer>{createStars()}</StarsContainer>} {/* Display stars when dark mode is toggled */}
-            <Overlay />
-            <Navbar handleToggle={handleToggle} />  {/* Pass handleToggle to Navbar */}
-            <HeroText>
-                <HeroHeading>JOURNEY BEYOND<br />THE ORDINARY</HeroHeading>
-                <HeroDescription>
-                    Embark on a journey where the ordinary dissolves into the extraordinary, and every moment is a new horizon waiting to be explored. Blaze trails across uncharted territories and redefine what it means to travel the world.
-                </HeroDescription>
-            </HeroText>
-        </HeaderContainer>
-    );
+  return (
+    <HeaderContainer>
+      {showStars && <StarsContainer>{createStars()}</StarsContainer>}
+      <Overlay />
+      <HeroText>
+        <HeroHeading>JOURNEY BEYOND<br />THE ORDINARY</HeroHeading>
+        <HeroDescription>
+        Embark on a journey where the ordinary dissolves into the extraordinary,<br></br> and every moment is a new horizon waiting to be explored. Blaze trails across uncharted territories and redefine what it means to travel the <br></br>world.        </HeroDescription>
+      </HeroText>
+    </HeaderContainer>
+  );
 };
 
 // Keyframe animation for stars
@@ -58,7 +51,8 @@ const StarsContainer = styled.div`
         background-color: white;
         border-radius: 50%;
         box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        animation: ${starAnimation} 4s ease-in-out;
+        animation: ${starAnimation} 2s ease-in-out;
+
     }
 `;
 
@@ -81,6 +75,7 @@ const createStars = () => {
 };
 
 const HeaderContainer = styled.header`
+    z-index: 1;
     position: relative;
     background-image: url('/outside.png');
     background-size: cover;
@@ -89,7 +84,8 @@ const HeaderContainer = styled.header`
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Overlay = styled.div`
@@ -110,18 +106,23 @@ const HeroText = styled.div`
 `;
 
 const HeroHeading = styled.h2`
-    font-family: 'Syncopate';
+    width: 100%;
+    font-family: 'Syncopate' ,sans-serif;
     font-weight: 700;
-    font-size: 62px;
-    margin-bottom: 20px;
+    font-size: 85px;
+    margin-bottom: 50px;
     line-height: 1.1;
+    padding-top: 100px;
+    font-widght: bold;
 `;
 
 const HeroDescription = styled.p`
-    font-family: 'Space Grotesk';
-    font-size: 20px;
+    font-family: 'Space Grotesk' ,sans-serif;
+    font-size: 18px;
     max-width: 600px;
     margin: 0 auto 30px auto;
+    line-height: 1.6;
+    color: white;
 `;
 
 export default Header;

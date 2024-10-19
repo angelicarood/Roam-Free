@@ -22,24 +22,29 @@ const BrandSect = () => {
 
 const BrandSection = styled.section`
   padding: 50px;
+  margin: 50px;
 `;
 
 const BrandGrid = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 40px;
 `;
 
 const BrandItem = styled.div`
   flex: 1;
+  
 `;
 
 const BrandImage = styled.img`
-  width: 100%;
-  height: auto;
+  width: 900px;
+  height: 1200px;
   object-fit: cover;
-  padding: 70px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 70px;
+  
 `;
 
 const TextContainer = styled.div`
@@ -48,22 +53,25 @@ const TextContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 85px;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 20px;
   font-family: 'Syncopate', sans-serif;
+  letter-spacing: 2px;
+  width: 100%;
 `;
 
 const BrandDescription = styled.div`
   display: flex;
-  gap: 20px; /* Space between the two text spans */
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 30px;
+  letter-spacing: 1px;
+  width: 100%;
 
   span {
-    flex: 1; /* Ensures both spans take equal width */
+    flex: 5; /* Ensures both spans take equal width */
   }
 `;
 

@@ -9,7 +9,8 @@ const DarkModeToggle = ({ onToggle }) => {
     toggleDarkMode();
     console.log("DarkModeToggle clicked, darkMode:", darkMode);  // Debugging log
     if (onToggle) {
-      onToggle();  // Trigger the stars when toggling dark mode
+      onToggle();
+        // Trigger the stars when toggling dark mode
     }
   };
 
@@ -27,6 +28,7 @@ const SunIcon = styled.div`
   width: 20px;
   height: 20px;
   background: #ffcc00;
+  border: 1px solid yellow;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 `;
@@ -53,9 +55,9 @@ const MoonIcon = styled.div`
 
 // Toggle ball that changes between sun and moon
 const ToggleBall = styled.div`
-  width: 30px;
+  width: 40px;
   height: 30px;
-  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#87ceeb')}; 
+  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#f1f1f1')}; 
   border-radius: 50%;
   position: absolute;
   top: 5px;
@@ -67,9 +69,10 @@ const ToggleBall = styled.div`
 `;
 
 const ToggleContainer = styled.div`
-  width: 70px;
-  height: 40px;
-  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#87ceeb')}; 
+  border: 3px solid ${({ darkMode }) => (darkMode ? 'white' : 'grey')};
+  width: 80px;
+  height: 30px;
+  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#f1f1f1')}; 
   border-radius: 30px;
   padding: 5px;
   display: flex;
