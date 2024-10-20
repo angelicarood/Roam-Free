@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import VideoPlayer from "./VideoPlayer";
 import Header from './Header';
 import { ThemeContext } from '../ThemeContext';
+import Navbar from './Navbar';
 
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
   
   return (
     <div className={darkMode ? 'dark-mode' : 'light-mode'}>
+      <Navbar transparent={true} />
       <Header/>
       <DiscoverSect />
       <VideoPlayer/>

@@ -16,49 +16,38 @@ const DarkModeToggle = ({ onToggle }) => {
 
   return (
     <ToggleContainer darkMode={darkMode} onClick={handleClick}>
-      <ToggleBall darkMode={darkMode}>
-        {darkMode ? <MoonIcon /> : <SunIcon />}
+       <ToggleBall darkMode={darkMode}>
+       {!darkMode ? <SunIcon /> : <MoonIcon />}
       </ToggleBall>
     </ToggleContainer>
   );
 };
 
-// Sun Icon with shadow
+// Sun Icon
 const SunIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  background: #ffcc00;
-  border: 1px solid yellow;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  width: 30px;
+  height: 30px;
+  background-image: url("/sun.png");  // Corrected the syntax here
+  background-size: cover;
+  background-position: center;
 `;
 
-// Moon Icon with crescent
+// Moon Icon
 const MoonIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  position: relative;
-
-  &::before {
-    content: '';
-    width: 10px;
-    height: 20px;
-    background-color: #2d3748;
-    border-radius: 50%;
-    position: absolute;
-    right: 0px;
-  }
+  width: 30px;
+  height: 30px;
+  background-image: url("/moon.png");  // Corrected the syntax here
+  background-size: cover;
+  background-position: center;
 `;
+
 
 // Toggle ball that changes between sun and moon
 const ToggleBall = styled.div`
   width: 40px;
   height: 30px;
-  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#f1f1f1')}; 
-  border-radius: 50%;
+  background-color: ${({ darkMode }) => (darkMode ? 'grey' : 'grey')}; 
+  border-radius: 20px;
   position: absolute;
   top: 5px;
   left: ${({ darkMode }) => (darkMode ? '35px' : '5px')}; 
@@ -69,10 +58,10 @@ const ToggleBall = styled.div`
 `;
 
 const ToggleContainer = styled.div`
-  border: 3px solid ${({ darkMode }) => (darkMode ? 'white' : 'grey')};
+  border: 1px solid ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   width: 80px;
   height: 30px;
-  background-color: ${({ darkMode }) => (darkMode ? '#2d3748' : '#f1f1f1')}; 
+  background-color: ${({ darkMode }) => (darkMode ? '#282828' : 'white')}; 
   border-radius: 30px;
   padding: 5px;
   display: flex;

@@ -15,7 +15,7 @@ const Header = () => {
   }, [darkMode]);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer darkMode={darkMode}>
       {showStars && <StarsContainer>{createStars()}</StarsContainer>}
       <Overlay />
       <HeroText>
@@ -77,7 +77,7 @@ const createStars = () => {
 const HeaderContainer = styled.header`
     z-index: 1;
     position: relative;
-    background-image: url('/outside.png');
+    background-image: ${({ darkMode }) => (darkMode ? 'url("/outsidenight.png")' : 'url("/outside.png")')};
     background-size: cover;
     background-position: center;
     height: 50vh;
@@ -86,6 +86,7 @@ const HeaderContainer = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 `;
 
 const Overlay = styled.div`
