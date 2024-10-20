@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './Components/Navbar';
 import FooterWeb from './Components/FooterWeb';
 import HomePage from './Components/HomePage';
 import Shop from './Components/Shop';
@@ -17,7 +16,6 @@ function App() {
       <GlobalStyle darkMode={darkMode} />  {/* Apply global styles */}
       <Router>
         <div className="App">
-          <Navbar darkMode={darkMode} />  {/* Pass darkMode to Navbar */}
           <Routes>
             <Route path="/shop" element={<Shop darkMode={darkMode} />} />
             <Route path="/payment-success" element={<PaymentSuccess darkMode={darkMode} />} />

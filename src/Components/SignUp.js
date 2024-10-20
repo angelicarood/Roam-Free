@@ -30,7 +30,7 @@ const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('/background.jpg');
+  background-image: ${({ darkMode }) => (darkMode ? 'url("/nightback.webp")' : 'url("/background.jpg")')}; /* Changes only section background */
   background-size: cover;
   background-position: center;
   padding: 50px;

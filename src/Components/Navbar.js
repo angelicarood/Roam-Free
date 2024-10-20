@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageDropdown from './LanguageDropdown';
+import { ThemeContext } from '../ThemeContext';
 
-const Navbar = ({ darkMode }) => {
+const Navbar = ({ transparent }) => {
+  const { darkMode } = useContext(ThemeContext);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // Monitor scroll position
@@ -17,15 +19,16 @@ const Navbar = ({ darkMode }) => {
   }, []);
 
   return (
-    <NavbarContainer darkMode={darkMode} isScrolled={scrollPosition > 50}>
+    <NavbarContainer darkMode={darkMode} isScrolled={scrollPosition > 50} transparent={transparent}>
       <LeftSection>
         <Logo darkMode={darkMode}></Logo>
         <LanguageDropdown />
       </LeftSection>
-      <NavLinks darkMode={darkMode}><NavItem darkMode={ darkMode}>
+      <NavLinks darkMode={darkMode}>
+        <NavItem darkMode={darkMode}>
           <NavLink darkMode={darkMode} href="#home-page">Home</NavLink>
         </NavItem>
-        <NavItem darkMode={ darkMode}>
+        <NavItem darkMode={darkMode}>
           <NavLink darkMode={darkMode} href="#">North Area</NavLink>
         </NavItem>
         <NavItem darkMode={darkMode}>
@@ -34,7 +37,7 @@ const Navbar = ({ darkMode }) => {
         <NavItem darkMode={darkMode}>
           <NavLink darkMode={darkMode} href="#">South Area</NavLink>
         </NavItem>
-        <NavItem darkMode={darkMode}> 
+        <NavItem darkMode={darkMode}>
           <NavLink darkMode={darkMode} href="#brand-section">About</NavLink>
         </NavItem>
         <NavItem darkMode={darkMode}>
@@ -48,12 +51,11 @@ const Navbar = ({ darkMode }) => {
   );
 };
 
-// NavbarContainer with sticky and background change logic
+// Modify NavbarContainer to handle transparent prop and scroll behavior
 const NavbarContainer = styled.nav`
   box-shadow: ${({ isScrolled }) =>
     isScrolled ? '0 0 10px rgba(0, 0, 0, 0.1)' : 'none'};  // Add shadow on scroll
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100px;
@@ -61,20 +63,24 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
-  background-color: ${({ darkMode, isScrolled }) =>
-    isScrolled ? (darkMode ? '#282828' : '#fff') : 'transparent'}; /* Change background on scroll */
+  background-color: ${({ darkMode, isScrolled, transparent }) =>
+    transparent && !isScrolled
+      ? 'transparent' // Transparent when at top of the page and if transparent prop is true
+      : isScrolled
+      ? (darkMode ? '#282828' : '#fff') // Solid background on scroll
+      : (darkMode ? '#282828' : '#fff')}; // Default background if not transparent
   z-index: 10;
   transition: background-color 0.3s ease; /* Smooth transition for background */
 `;
 
 const Logo = styled.div`
-  background-image: url('/RoamLogo.png');
-  background-size: contain;  // Ensure the logo fits within the container
+  background-image: ${({ darkMode }) => (darkMode ? 'url("/nightlogo.png")' : 'url("/RoamLogo.png")')};
+  background-size: ${({ darkMode }) => (darkMode ? 'contain' : 'contain')}; 
   background-position: center;
   background-repeat: no-repeat;
-  width: 200px;  // Adjust width as necessary
-  height: 130px;  // Adjust height as necessary 
-  margin-bottom: 10px;
+  
+  width: ${({ darkMode }) => (darkMode ? '150px' : '150px')};
+  height: ${({ darkMode }) => (darkMode ? '130px' : '130px')};
 `;
 
 const LeftSection = styled.div`
@@ -88,23 +94,28 @@ const NavLinks = styled.ul`
   display: flex;
   gap: 20px;
   font-family: syncoptate, sans-serif;
-  marging-left: 20px;
+  margin-left: 20px;
   letter-spacing: 1px;
+  
+
 `;
 
 const NavItem = styled.li`
+  background-color: ${({ darkMode }) => (darkMode ? '#282828' : '#fff')};
   border: 1px solid ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   padding: 10px 20px;
   border-radius: 30px;
-
+  
+  
 `;
 
 const NavLink = styled.a`
-  color: ${({ darkMode }) => (darkMode ? 'white' : '#282828')};
+  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  
 
   &:hover {
     color: #f1bb7d;
@@ -116,9 +127,7 @@ const DarkModeButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 30px;
-  
+  padding: 50px;
 `;
-
 
 export default Navbar;
