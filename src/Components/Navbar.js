@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageDropdown from './LanguageDropdown';
 import { ThemeContext } from '../ThemeContext';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Navbar = ({ transparent }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -26,22 +27,22 @@ const Navbar = ({ transparent }) => {
       </LeftSection>
       <NavLinks darkMode={darkMode}>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#home-page">Home</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="/">Home</NavLink> {/* Home Link */}
         </NavItem>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#">North Area</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="/north">North Area</NavLink> {/* North Page Link */}
         </NavItem>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#">Central Area</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="/central">Central Area</NavLink>
         </NavItem>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#">South Area</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="/south">South Area</NavLink>
         </NavItem>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#brand-section">About</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="#brand-section">About</NavLink> {/* Scroll to Section */}
         </NavItem>
         <NavItem darkMode={darkMode}>
-          <NavLink darkMode={darkMode} href="#">Shop</NavLink>
+          <NavLink as={Link} darkMode={darkMode} to="/shop-page">Shop</NavLink> {/* Shop Link */}
         </NavItem>
       </NavLinks>
       <DarkModeButton>
@@ -96,8 +97,6 @@ const NavLinks = styled.ul`
   font-family: syncoptate, sans-serif;
   margin-left: 20px;
   letter-spacing: 1px;
-  
-
 `;
 
 const NavItem = styled.li`
@@ -105,17 +104,14 @@ const NavItem = styled.li`
   border: 1px solid ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   padding: 10px 20px;
   border-radius: 30px;
-  
-  
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`  // Styled as a Link
   color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  
 
   &:hover {
     color: #f1bb7d;

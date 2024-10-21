@@ -15,7 +15,7 @@ const Header = () => {
   }, [darkMode]);
 
   return (
-    <HeaderContainer darkMode={darkMode}>
+    <HeaderContainer darkMode={darkMode} id="Home-page">
       {showStars && <StarsContainer>{createStars()}</StarsContainer>}
       <Overlay />
       <HeroText>
