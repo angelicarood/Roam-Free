@@ -77,7 +77,7 @@ const LeftSect = styled.div`
 `;
 
 const Logo = styled.div`
-  background-image: url('/RoamLogo.png');
+  background-image:${({ darkMode }) => (darkMode ? 'url("/nightlogo.png")': 'url("/RoamLogo.png")')};
   background-size: contain;  // Ensure the logo fits within the container
   background-position: center;
   background-repeat: no-repeat;

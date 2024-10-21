@@ -20,7 +20,7 @@ const LanguageDropdown = () => {
 }
 const StyledSelect = styled.select`
   color: black; /* Change text color to black */
-  background-color: transparent; /* Make background transparent */
+  background-color: ${({ darkMode }) => (darkMode ? '#282828' : 'white')}; /* Change background color based on darkmode */
   border: 1px solid ${({ darkMode }) => (darkMode ? 'white' : '#282828')}; /* Change border color based on darkmode */
   padding: 10px 10px; /* Optional: add some padding */
   font-size: 18px; /* Optional: increase font size */
