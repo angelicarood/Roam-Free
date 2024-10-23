@@ -1,14 +1,15 @@
 import './App.css';
 import Header from './Components/Header.js';
-import Navbar from './Components/Navbar.js';
 import HomePage from './Components/HomePage.js';
 import FooterWeb from './Components/FooterWeb.js';
 import Shop from './Components/Shop.js';
 import PaymentSuccess from './Components/PaymentSuccess.js'; // Import the PaymentSuccess component
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Chat from './Components/Chat.js';
 
 
 function App() {
+
   return (
     <Router>
     <div className="App">  
@@ -20,6 +21,7 @@ function App() {
         </Routes> {/* Corrected closing tag */}
       <HomePage />
       <FooterWeb />
+      <Chat />
     </div>
     </Router>
   );
