@@ -1,39 +1,54 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../ThemeContext';
+import EmailSubscription from './EmailSubscription';
 
 const SignUp = () => {
+  const { darkMode } = useContext(ThemeContext);
+
+  // Function to handle form submission
+  const handleSignUp = (email) => {
+    console.log("Email submitted: ", email);
+  };
+
   return (
-    <SignUpSection>
+    <SignUpSection darkMode={darkMode}>
       <SignUpContent>
         <Title>START PLANNING</Title>
         <Description>
-          Tell people what they can expect when they sign up with<br></br> their email, like a newsletter, discounts or updates.
+          Enter your email to stay updated on our latest news, including new <br /> 
+          merchandise, exciting places to explore, and exclusive offers.
         </Description>
-        <SignUpForm>
-          <SignUpInput type="email" placeholder="Email Address" />
-          <SignUpButton>Sign Up</SignUpButton>
-        </SignUpForm>
+        <EmailSubscription onSubmit={handleSignUp} />
       </SignUpContent>
     </SignUpSection>
   );
 };
 
+// Styled Components
 const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #6DB56F;
+  background-image: ${({ darkMode }) => (darkMode ? 'url("/nightback.webp")' : 'url("/background.jpg")')}; /* Changes only section background */
+  background-size: cover;
+  background-position: center;
   padding: 50px;
+  height: 60vh; /* Ensure it takes full height of the screen */
+  background-color: ${({ darkMode }) => (darkMode ? '#282828' : 'white')}; /* Changes only section background */
 `;
 
 const SignUpContent = styled.div`
-  background-color: white;
+  background-color: white; /* Fixed white background */
+  color: black; /* Fixed black text */
   padding: 40px 60px;
   text-align: center;
   border-radius: 8px;
   max-width: 800px;
-  height: 500px;
+  max-height: 500px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
   width: 100%;
+  height: 100%;
 `;
 
 const Title = styled.h1`
@@ -42,49 +57,14 @@ const Title = styled.h1`
   text-transform: uppercase;
   margin-bottom: 20px;
   font-family: 'Syncopate', sans-serif;
+  color: black; /* Always stays black */
 `;
 
 const Description = styled.p`
   font-size: 18px;
   margin-bottom: 30px;
-  fotn-family: 'space grotesk', sans-serif;
-`;
-
-const SignUpForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const SignUpInput = styled.input`
-  width: 40%;
-  padding: 15px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-
-  &:focus {
-    border-color: #6DB56F;
-  }
-`;
-
-const SignUpButton = styled.button`
-  background-color: black;
-  color: white;
-  padding: 15px 30px;
-  font-size: 16px;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #333;
-  }
+  font-family: 'Space Grotesk', sans-serif;
+  color: black !important; /* Forces the description to always be black */
 `;
 
 export default SignUp;
