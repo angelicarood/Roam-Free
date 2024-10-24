@@ -52,8 +52,8 @@ const NorthMap = () => {
     
       const infoWindow = new google.maps.InfoWindow({
         content: `
-          <div style="text-align: center; font-family: Arial, sans-serif; max-width: 200px;">
-            <h3 style="font-size: 18px; margin-bottom: 8px;">${place.name}</h3>
+          <div style="text-align: center; font-family: Arial, sans-serif; max-width: 200px; position:cover;">
+            <h3 style="font-size: 18px; margin: 40px;">${place.name}</h3>
 
             <a href="${place.url}" target="_blank" style="color: #007bff; text-decoration: none;">Visit Website</a>
           </div>`

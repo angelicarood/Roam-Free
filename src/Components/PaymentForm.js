@@ -1,80 +1,126 @@
-import React, {useState} from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
 
-export default function PaymentForm() {
-    const [success, setSuccess] = useState(false);
-    const stripe = useStripe();
-    const elements = useElements();
-    const navigate = useNavigate();
+// Inline styles for the component
+const styles = {
+  productCard: {
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    padding: '16px',
+    width: '280px',
+    margin: '16px 8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  productImage: {
+    width: '100%',
+    height: 'auto',
+    borderRadius: '4px',
+  },
+  productDetails: {
+    textAlign: 'center',
+  },
+  productTitle: {
+    fontSize: '1.5rem',
+    margin: '16px 0 8px',
+  },
+  productText: {
+    margin: '8px 0',
+  },
+  productPrice: {
+    fontSize: '1.2rem',
+    color: '#4CAF50',
+    fontWeight: 'bold',
+  },
+  productsContainer: {
+    display: 'flex',
+    overflowX: 'scroll',
+  },
+  cartContainer: {
+    padding: '16px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    margin: '16px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  cartItem: {
+    marginBottom: '8px',
+  },
+  addToCartButton: {
+    padding: '8px 16px',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  },
+};
 
-      // Define CARD_OPTIONS
-    const CARD_OPTIONS = {
-        style: {
-            base: {
-                fontSize: '16px',
-                color: '#32325d',
-                letterSpacing: '0.025em',
-                padding: '10px',
-                // Add more styles as needed
-            },
-            invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a',
-            },
-        },
-    };
+// Mock product data
+const products = [
+  { id: 1, name: 'Phone Case', description: 'Nightfall Stylish phone case.', price: '$19.99', image: '/merch1phonecase.webp' },
+  { id: 2, name: 'Backpack', description: 'Comfortable and spacious backpack.', price: '$79.99', image: '/merch2backpack.webp' },
+  { id: 3, name: 'T-Shirt', description: 'Soft and stylish t-shirt.', price: '$29.99', image: '/merch3tshirt.webp' },
+  { id: 4, name: 'Sweater', description: 'Warm and cozy sweater.', price: '$49.99', image: '/merch4sweather.webp' },
+  { id: 5, name: 'Hoodie', description: 'Comfortable and trendy hoodie.', price: '$59.99', image: '/merch5hoddie.webp' },
+  { id: 6, name: 'Hat', description: 'Cool and casual hat.', price: '$24.99', image: '/merch6hat.webp' },
+  { id: 7, name: 'Phone Case', description: 'Daylight stylish phone case.', price: '$19.99', image: '/merch7phonecase.webp' },
+];
 
+// Component for displaying a single product
+const Product = ({ product, addToCart }) => (
+  <div style={styles.productCard}>
+    <img src={product.image} alt={product.name} style={styles.productImage} />
+    <div style={styles.productDetails}>
+      <h2 style={styles.productTitle}>{product.name}</h2>
+      <p style={styles.productText}>{product.description}</p>
+      <p style={styles.productPrice}>{product.price}</p>
+      <button style={styles.addToCartButton} onClick={() => addToCart(product)}>Add to Cart</button>
+    </div>
+  </div>
+);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
-            type: "card",
-            card: elements.getElement(CardElement)
-        });
-    
-
-    if(!error) {
-        try{
-            const {id} = paymentMethod;
-            const response = await axios.post("http://localhost:4000/payment", {
-                amount: 1000, // cents
-                id
-            })
-
-            if(response.data.success) {
-                console.log("Successful payment")
-                setSuccess(true);
-                navigate("/payment-success"); // Redirect to the payment success page
-            }
-
-            
-        }catch(error) {
-            console.log(error)
-        }
-    }else{
-        console.log(error.message)
-    }
-}
+// Component for displaying the shopping cart
+const ShoppingCart = ({ cart }) => {
+  const total = cart.reduce((sum, item) => sum + parseFloat(item.price.slice(1)), 0);
 
   return (
-      <>
-      {!success ?
-      <form onSubmit={handleSubmit}>
-        <fieldset className="FormGroup">
-            <div className="FormRow">
-                <CardElement options={CARD_OPTIONS} />
-            </div>
-        </fieldset>
-            <button>Pay</button>
-        </form>  
-        :
-        <div>Payment Successful!</div>
-        }
-      </>
+    <div style={styles.cartContainer}>
+      <h2>Shopping Cart</h2>
+      {cart.map((item, index) => (
+        <div key={index} style={styles.cartItem}>
+          <p>{item.name} - {item.price}</p>
+        </div>
+      ))}
+      <p><strong>Total:</strong> ${total.toFixed(2)}</p>
+    </div>
+  );
+};
 
-     )
+// Main component for displaying all products and the shopping cart
+const ShopPage = () => {
+  const [cart, setCart] = useState([]);
 
-      
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  return (
+    <div className="shop-page">
+      <main className="shop-main">
+        <section className="products" style={styles.productsContainer}>
+          {products.map(product => (
+            <Product key={product.id} product={product} addToCart={addToCart} />
+          ))}
+        </section>
+        <ShoppingCart cart={cart} />
+      </main>
+    </div>
+  );
+};
+
+export default function App() {
+  return (
+    <div className="App">
+      <ShopPage />
+    </div>
+  );
 }
