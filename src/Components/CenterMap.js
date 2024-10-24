@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 
 const CenterMap = () => {
+  const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   useEffect(() => {
     const initMap = () => {
       const map = new google.maps.Map(document.getElementById('map'), {
@@ -39,9 +40,11 @@ const CenterMap = () => {
       const infoWindow = new google.maps.InfoWindow({
         content: `
           <div style="text-align: center; font-family: Arial, sans-serif; max-width: 200px;">
-            <h3 style="font-size: 18px; margin-bottom: 8px;">${place.name}</h3>
+            <h3 style="font-size: 18px; margin-bottom: 8px; color: ${darkMode ? 'white' : 'black'}; background-color: ${darkMode ? 'black' : 'white'}; padding: 8px 16px; border-radius: 4px;
+            ">${place.name}</h3>
 
-            <a href="${place.url}" target="_blank" style="color: #007bff; text-decoration: none;">Visit Website</a>
+            <a href="${place.url}" target="_blank" style="color: ${darkMode ? 'white' : 'black'}; background-color: ${darkMode ? 'black' : 'white'}; padding: 8px 16px; border-radius: 4px;
+             text-decoration: none;">Visit Website</a>
           </div>`
       });
     
@@ -62,7 +65,7 @@ const CenterMap = () => {
     } else {
       window.initMap = initMap;
     }
-  }, []);
+  }, [darkMode]);
 
   return (
     <div>
