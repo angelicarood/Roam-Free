@@ -3,6 +3,15 @@ import { ThemeContext } from './ThemeContext';
 import Navbar from './Components/Navbar';
 import FooterWeb from './Components/FooterWeb';
 import styled from 'styled-components';
+import Shop from './Components/Shop';
+
+const ShopSection = styled.div`
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px; // Adjust this value based on your Navbar's height
+  background-size: cover;
+  height: 50vh;
+`;
 
 
 
@@ -18,13 +27,17 @@ const NavbarStyle = styled.div`
 `;
 
 const ShopPage = () => {
+  const { darkMode } = useContext(ThemeContext);
 
   return (
     
-    <div>
+    <div darkMode={darkMode}>
       <NavbarStyle>
       <Navbar/>
       </NavbarStyle>
+      <ShopSection>
+      <Shop />
+      </ShopSection>
       <FooterWeb />
     </div>
   );
