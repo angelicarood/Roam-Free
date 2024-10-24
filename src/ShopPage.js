@@ -17,14 +17,11 @@ const NavbarStyle = styled.div`
   }
 `;
 
+const ShopPage = () => {
 
-const North = () => {
-
-  const { darkMode } = useContext(ThemeContext);
-  
   return (
     
-    <div darkMode={darkMode}>
+    <div>
       <NavbarStyle>
       <Navbar/>
       </NavbarStyle>
@@ -33,4 +30,4 @@ const North = () => {
   );
 };
 
-export default North;
+export default ShopPage;

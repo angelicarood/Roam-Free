@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ export default function PaymentForm() {
     const elements = useElements();
     const navigate = useNavigate();
 
-      // Define CARD_OPTIONS
+    // Define CARD_OPTIONS
     const CARD_OPTIONS = {
         style: {
             base: {
@@ -26,55 +26,53 @@ export default function PaymentForm() {
         },
     };
 
-
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
+        e.preventDefault();
+        if (!stripe || !elements) {
+            return; // Stripe hasn't loaded yet
+        }
+
+        const cardElement = elements.getElement(CardElement);
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
-            card: elements.getElement(CardElement)
+            card: cardElement,
         });
-    
 
-    if(!error) {
-        try{
-            const {id} = paymentMethod;
-            const response = await axios.post("http://localhost:4000/payment", {
-                amount: 1000, // cents
-                id
-            })
+        if (!error) {
+            try {
+                const { id } = paymentMethod;
+                const response = await axios.post("http://localhost:4000/payment", {
+                    amount: 1000, // cents
+                    id,
+                });
 
-            if(response.data.success) {
-                console.log("Successful payment")
-                setSuccess(true);
-                navigate("/payment-success"); // Redirect to the payment success page
+                if (response.data.success) {
+                    console.log("Successful payment");
+                    setSuccess(true);
+                    navigate("/payment-success"); // Redirect to the payment success page
+                }
+            } catch (error) {
+                console.error("Payment error:", error);
             }
-
-            
-        }catch(error) {
-            console.log(error)
+        } else {
+            console.error("Stripe error:", error.message);
         }
-    }else{
-        console.log(error.message)
-    }
-}
+    };
 
-  return (
-      <>
-      {!success ?
-      <form onSubmit={handleSubmit}>
-        <fieldset className="FormGroup">
-            <div className="FormRow">
-                <CardElement options={CARD_OPTIONS} />
-            </div>
-        </fieldset>
-            <button>Pay</button>
-        </form>  
-        :
-        <div>Payment Successful!</div>
-        }
-      </>
-
-     )
-
-      
+    return (
+        <>
+            {!success ? (
+                <form onSubmit={handleSubmit}>
+                    <fieldset className="FormGroup">
+                        <div className="FormRow">
+                            <CardElement options={CARD_OPTIONS} />
+                        </div>
+                    </fieldset>
+                    <button type="submit" disabled={!stripe}>Pay</button>
+                </form>
+            ) : (
+                <div>Payment Successful!</div>
+            )}
+        </>
+    );
 }
