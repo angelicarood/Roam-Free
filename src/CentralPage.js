@@ -30,7 +30,7 @@ const Central = () => {
   const { darkMode } = useContext(ThemeContext);
   
   return (
-    <div className={darkMode ? 'dark-mode' : 'light-mode'}>
+    <div darkMode={darkMode}>
       <NavbarStyle> 
       <Navbar/>
       </NavbarStyle>
