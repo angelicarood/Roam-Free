@@ -1,3 +1,37 @@
+.container {
+  width: 100%;
+  max-width: 1200px; /* To limit maximum width on large screens */
+  margin: 0 auto; /* Center the container */
+}
+
+/* For smaller screens (e.g., tablets and below) */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .App-header {
+    font-size: calc(8px + 2vmin); /* Adjust based on smaller screens */
+    padding: 20px;
+  }
+}
+
+/* For medium to large screens (e.g., desktops) */
+@media (min-width: 992px) {
+  .container {
+    width: 80%;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+}
+
+/* Universal App Styles */
 .App {
   text-align: center;
 }
@@ -7,12 +41,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -20,7 +48,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); /* Adjust based on screen size */
   color: white;
 }
 

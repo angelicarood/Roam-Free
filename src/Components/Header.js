@@ -80,7 +80,7 @@ const HeaderContainer = styled.header`
     background-image: ${({ darkMode }) => (darkMode ? 'url("/outsidenight.png")' : 'url("/outside.png")')};
     background-size: cover;
     background-position: center;
-    height: 50vh;
+    height: 60vh;
     color: white;
     display: flex;
     flex-direction: column;
