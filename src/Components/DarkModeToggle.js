@@ -46,7 +46,7 @@ const MoonIcon = styled.div`
 const ToggleBall = styled.div`
   width: 40px;
   height: 30px;
-  background-color: ${({ darkMode }) => (darkMode ? 'grey' : 'grey')}; 
+  background-color: ${({ darkMode }) => (darkMode ? 'grey' : '#FFFFF8')}; 
   border-radius: 20px;
   position: absolute;
   top: 5px;

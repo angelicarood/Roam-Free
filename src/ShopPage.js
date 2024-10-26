@@ -9,8 +9,9 @@ const ShopSection = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 200px; // Adjust this value based on your Navbar's height
+  padding-bottom: 100px; // Add extra padding at the bottom for spacing
   background-size: cover;
-  height: 50vh;
+  min-height: 100vh; // Ensures the section takes at least the full viewport height
 `;
 
 

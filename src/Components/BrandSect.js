@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BrandSect = () => {
   return (
-    <BrandSection id="brand-section">
+    <BrandSection>
       <BrandGrid>
         <BrandItem>
           <BrandImage src="hall.jpg" alt="Hall" />

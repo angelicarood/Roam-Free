@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageDropdown from './LanguageDropdown';
 import { ThemeContext } from '../ThemeContext';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
+
 
 const Navbar = ({ transparent }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -37,9 +38,6 @@ const Navbar = ({ transparent }) => {
         </NavItem>
         <NavItem darkMode={darkMode}>
           <NavLink as={Link} darkMode={darkMode} to="/south">South Area</NavLink>
-        </NavItem>
-        <NavItem darkMode={darkMode}>
-          <NavLink as={Link} darkMode={darkMode} to="#brand-section">About</NavLink> {/* Scroll to Section */}
         </NavItem>
         <NavItem darkMode={darkMode}>
           <NavLink as={Link} darkMode={darkMode} to="/shop-page">Shop</NavLink> {/* Shop Link */}

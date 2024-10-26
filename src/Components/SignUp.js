@@ -6,17 +6,39 @@ import EmailSubscription from './EmailSubscription';
 const SignUp = () => {
   const { darkMode } = useContext(ThemeContext);
 
-  // Function to handle form submission
-  const handleSignUp = (email) => {
-    console.log("Email submitted: ", email);
+  // Function to handle form submission and connect to the Flask backend
+  const handleSignUp = async (email) => {
+    console.log("Email received in handleSignUp:", email); // Add this line to debug
+  
+    try {
+      const response = await fetch("http://127.0.0.1:5010/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert(result.message || "Subscription successful!"); // Show success message
+      } else {
+        alert(`Subscription failed: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
+  
 
   return (
     <SignUpSection darkMode={darkMode}>
       <SignUpContent>
         <Title>START PLANNING</Title>
         <Description>
-          Enter your email to stay updated on our latest news, including new <br /> 
+          Enter your email to stay updated on our latest news, including new <br />
           merchandise, exciting places to explore, and exclusive offers.
         </Description>
         <EmailSubscription onSubmit={handleSignUp} />
@@ -30,23 +52,25 @@ const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: ${({ darkMode }) => (darkMode ? 'url("/nightback.webp")' : 'url("/background.jpg")')}; /* Changes only section background */
+  background-image: ${({ darkMode }) =>
+    darkMode ? 'url("/nightback.webp")' : 'url("/background.jpg")'};
   background-size: cover;
   background-position: center;
   padding: 50px;
-  height: 60vh; /* Ensure it takes full height of the screen */
-  background-color: ${({ darkMode }) => (darkMode ? '#282828' : 'white')}; /* Changes only section background */
+  height: 60vh;
+  background-color: ${({ darkMode }) =>
+    darkMode ? '#282828' : 'white'};
 `;
 
 const SignUpContent = styled.div`
-  background-color: white; /* Fixed white background */
-  color: black; /* Fixed black text */
+  background-color: white;
+  color: black;
   padding: 40px 60px;
   text-align: center;
   border-radius: 8px;
   max-width: 800px;
   max-height: 500px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;
 `;
@@ -57,14 +81,14 @@ const Title = styled.h1`
   text-transform: uppercase;
   margin-bottom: 20px;
   font-family: 'Syncopate', sans-serif;
-  color: black; /* Always stays black */
+  color: black;
 `;
 
 const Description = styled.p`
   font-size: 18px;
   margin-bottom: 30px;
   font-family: 'Space Grotesk', sans-serif;
-  color: black !important; /* Forces the description to always be black */
+  color: black !important;
 `;
 
 export default SignUp;
