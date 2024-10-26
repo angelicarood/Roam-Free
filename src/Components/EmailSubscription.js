@@ -5,6 +5,7 @@ import styled from "styled-components";
 const EmailSubscription = ({onSubmit}) => {// Get the darkMode value from the ThemeContext
   const [email, setEmail] = React.useState("");
   const [error, setError] = React.useState("");
+  
 
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,28 +20,30 @@ const EmailSubscription = ({onSubmit}) => {// Get the darkMode value from the Th
   //handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if(!emailRegex.test(email)){// VALIDATE EMAIL, if invalid, set error message
+    console.log("Form submitted with email:", email);
+  
+    if (!emailRegex.test(email)) {
       setError("Please enter a valid email address");
       return;
     }
-      //when email is valid call the parent function which is sigup com
-      onSubmit(email);
-      setEmail("");// this resets the email input field after submission
-    
+  
+    onSubmit(email);
+    setEmail("");
   };
 
 
   return(
     <form onSubmit={handleSubmit}> 
-      <StyledSignUpInput type="email" placeholder="Email Address" value={email} onChange={handleEmailChange} required />
+      
+      <StyledSignUpInput type="email" placeholder="Email Address" value={email} onChange={handleEmailChange} required  />
       {error && <p style={{color: "red"}}>{error}</p>} {/* display error message if email is invalid */}
-      <br></br>  {/* Line break */}
-      <SignUpButton type="submit">Sign Up</SignUpButton> {/* Styled button */}
+      <br></br>
+      <SignUpButton type="submit">Subscribe</SignUpButton> {/* Styled button */}
         
     </form>
 )
 }; 
+
 
 const StyledSignUpInput = styled.input`
   width: 40%;

@@ -10,7 +10,7 @@ const MapSection = styled.div`
   align-items: center;
   padding-top: 200px; // Adjust this value based on your Navbar's height
   background-size: cover;
-  height: 50vh;
+  height: 100vh;
 `;
 
 const NavbarStyle = styled.div`

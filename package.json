@@ -18,6 +18,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "^5.0.1",
     "roam-free": "file:../Roam-Free",
     "styled-components": "^6.1.13",
