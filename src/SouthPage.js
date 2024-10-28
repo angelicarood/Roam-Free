@@ -4,6 +4,8 @@ import Navbar from './Components/Navbar';
 import FooterWeb from './Components/FooterWeb';
 import SouthMap from './Components/SouthMap';
 import styled from 'styled-components';
+import TouristPlaces from './Components/TouristPlaces';
+
 
 const MapSection = styled.div`
   justify-content: center;
@@ -33,6 +35,7 @@ const South = () => {
       <NavbarStyle>
       <Navbar/>
       </NavbarStyle>
+      <TouristPlaces/>
       <MapSection>
       <SouthMap/>
       </MapSection> 
